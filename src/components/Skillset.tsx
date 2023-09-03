@@ -21,28 +21,28 @@ function arrayToIcons(
   tooltipOpenName: string,
   setTooltipOpenName: (value: React.SetStateAction<string>) => void
 ) {
-  return array.map((language) => (
-    <TooltipProvider delayDuration={0}>
+  return array.map((technical) => (
+    <TooltipProvider key={technical.name} delayDuration={0}>
       <Tooltip
-        open={tooltipOpenName === language.name}
+        open={tooltipOpenName === technical.name}
         onOpenChange={(open) => {
-          if (open) setTooltipOpenName(language.name);
+          if (open) setTooltipOpenName(technical.name);
           if (!open) setTooltipOpenName("");
         }}
       >
         <TooltipTrigger
-          onClick={() => setTooltipOpenName(language.name)}
+          onClick={() => setTooltipOpenName(technical.name)}
           asChild
           className="hover:text-foreground text-accent transition-transform hover:-translate-y-2"
         >
           <div>
             <div className="flex flex-col items-center gap-y-1 text-6xl">
-              {language.icon}
+              {technical.icon}
             </div>
           </div>
         </TooltipTrigger>
         <TooltipContent side="bottom" sideOffset={12}>
-          <div className="text-lg">{language.name}</div>
+          <div className="text-lg">{technical.name}</div>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

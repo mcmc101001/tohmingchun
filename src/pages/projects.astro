@@ -1,9 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CardList from "@/components/CardList";
 ---
 
 <Layout title="Hi, I am Ming Chun.">
-  <main class="flex flex-col bg-background">
-    <h1>Hello world</h1>
+  <main class="flex flex-col bg-background items-center justify-center pb-20">
+    <h1
+      class="md:mt-28 mt-20 text-foreground font-bold md:text-5xl text-2xl mb-5 md:mb-10"
+    >
+      Projects
+    </h1>
+    <div class="px-6 container">
+      <div class="grid gap-10 grid-cols-1 lg:grid-cols-2">
+        <CardList />
+      </div>
+    </div>
   </main>
 </Layout>
