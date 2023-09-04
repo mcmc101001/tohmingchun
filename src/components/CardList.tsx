@@ -90,46 +90,59 @@ function Card({
   icon,
   callToActionText = "Try it now",
 }: CardProps) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
 
   function handleMouseMove({ clientX, clientY, currentTarget }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
+    let { left, top } = currentTarget.getBoundingClientRect();
 
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
+
+    console.log(clientX - left, clientY - top);
   }
 
   return (
-    <div className="p-5 rounded-lg bg-accent text-foreground flex flex-col justify-between gap-y-3 relative">
-      {githubRef && (
-        <a className="absolute top-5 right-5 group" href={githubRef}>
-          <GithubIcon className="ml-2 h-4 w-4 md:h-6 md:w-6 text-foreground/80 group-hover:text-foreground/60" />
-        </a>
-      )}
-      <div>
-        <div className="h-10 w-10 md:h-16 md:w-16">{icon}</div>
-        <h1 className="text-xl md:text-3xl font-semibold">{title}</h1>
-      </div>
-      <p className="text-xs md:text-base">{description}</p>
-      <p className="text-accent-foreground/60 flex flex-wrap gap-x-2 md:gap-x-4">
-        {tech.map((techItem) => (
-          <span key={techItem} className="text-xs md:text-base">
-            {techItem}
-          </span>
-        ))}
-      </p>
-      <a
-        className={callToActionDisabled ? "pointer-events-none" : ""}
-        href={href}
-      >
-        <Button
-          disabled={callToActionDisabled}
-          className="w-full text-sm md:text-lg"
+    <div
+      onMouseMove={handleMouseMove}
+      className="p-5 bg-accent rounded-lg relative group/card"
+    >
+      <motion.div
+        className="pointer-events-none absolute rounded-lg -inset-px opacity-0 group-hover/card:opacity-100 transition duration-300"
+        style={{
+          background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, hsl(0, 0%, 70%, 0.1), transparent)`,
+        }}
+      />
+      <div className="text-foreground h-full w-full flex flex-col justify-between gap-y-3">
+        {githubRef && (
+          <a className="absolute top-5 right-5 group/github" href={githubRef}>
+            <GithubIcon className="ml-2 h-4 w-4 md:h-6 md:w-6 text-foreground/80 group-hover/github:text-foreground/60" />
+          </a>
+        )}
+        <div>
+          <div className="h-10 w-10 md:h-16 md:w-16">{icon}</div>
+          <h1 className="text-xl md:text-3xl font-semibold">{title}</h1>
+        </div>
+        <p className="text-xs md:text-base">{description}</p>
+        <p className="text-accent-foreground/60 flex flex-wrap gap-x-2 md:gap-x-4">
+          {tech.map((techItem) => (
+            <span key={techItem} className="text-xs md:text-base">
+              {techItem}
+            </span>
+          ))}
+        </p>
+        <a
+          className={callToActionDisabled ? "pointer-events-none" : ""}
+          href={href}
         >
-          {callToActionText}
-        </Button>
-      </a>
+          <Button
+            disabled={callToActionDisabled}
+            className="w-full text-sm md:text-lg"
+          >
+            {callToActionText}
+          </Button>
+        </a>
+      </div>
     </div>
   );
 }

@@ -46,7 +46,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-		},
-		plugins: [],
-	}
+		}
+	},
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
 }
