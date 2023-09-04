@@ -1,0 +1,29 @@
+---
+import { Code } from "astro:components";
+---
+
+<Code
+  code={`
+    #include <iostream>
+    using namespace std;
+
+    class MingChun {
+      private:
+        char* name;
+        int age;
+        char* email;
+        char* telegramID;
+
+      public:
+        MingChun() {
+          name = "Toh Ming Chun";
+          age = 22;
+          email = "tohmingchun@u.nus.edu"
+          telegramID = "@tohmc101001"
+        }
+      };
+      
+    `}
+  lang="cpp"
+  theme="dark-plus"
+/>

@@ -2,6 +2,7 @@
 import ScrollPrompter from "@/components/ScrollPrompter";
 import Skillset from "@/components/Skillset";
 import Layout from "../layouts/Layout.astro";
+import ProfileAsClass from "@/components/ProfileAsClass.astro";
 ---
 
 <Layout title="toh ming chun">
@@ -28,12 +29,13 @@ import Layout from "../layouts/Layout.astro";
         the frontend world. I love drawing inspiration from the problems I face
         in my everyday life and solving them with &lt;code&gt;
       </p>
+      <ProfileAsClass />
     </section>
     <section
       class="container min-h-screen py-10 bg-background text-foreground flex flex-col items-center justify-center"
     >
       <h1 class="font-bold md:text-5xl text-2xl mb-5 md:mb-10">
-        Skills and Proficiencies
+        &lt; Skills and Proficiencies /&gt;
       </h1>
       <Skillset client:load />
     </section>
