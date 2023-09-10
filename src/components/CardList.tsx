@@ -105,12 +105,12 @@ function Card({
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="p-5 bg-accent rounded-lg relative group/card"
+      className="p-5 bg-card rounded-lg relative group/card"
     >
       <motion.div
         className="pointer-events-none absolute rounded-lg -inset-px opacity-0 group-hover/card:opacity-100 transition duration-300"
         style={{
-          background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, hsl(0, 0%, 70%, 0.1), transparent)`,
+          background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, hsl(0, 0%, 70%, 0.15), transparent)`,
         }}
       />
       <div className="text-foreground h-full w-full flex flex-col justify-between gap-y-3">
@@ -124,7 +124,7 @@ function Card({
           <h1 className="text-xl md:text-3xl font-semibold">{title}</h1>
         </div>
         <p className="text-xs md:text-base">{description}</p>
-        <p className="text-accent-foreground/60 flex flex-wrap gap-x-2 md:gap-x-4">
+        <p className="text-card-foreground/60 flex flex-wrap gap-x-2 md:gap-x-4">
           {tech.map((techItem) => (
             <span key={techItem} className="text-xs md:text-base">
               {techItem}

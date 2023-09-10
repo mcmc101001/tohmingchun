@@ -12,7 +12,6 @@ export default function ScrollPrompter() {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setScrollPrompterTransparency(Math.max(0.6 - 5 * scrollYProgress.get(), 0));
-    console.log(scrollPrompterTransparency);
   });
 
   return (

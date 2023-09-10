@@ -30,6 +30,15 @@ export default function MobileNav() {
                 Github
               </a>
             </li>
+            <li>
+              <a
+                href="/tohMingChunCV.pdf"
+                download="tohMingChunCV.pdf"
+                className="text-foreground/80"
+              >
+                Résumé
+              </a>
+            </li>
           </ul>
         </SheetContent>
       </Sheet>

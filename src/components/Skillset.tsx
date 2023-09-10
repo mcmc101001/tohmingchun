@@ -33,7 +33,7 @@ function arrayToIcons(
         <TooltipTrigger
           onClick={() => setTooltipOpenName(technical.name)}
           asChild
-          className="hover:text-foreground text-accent transition-transform hover:-translate-y-2"
+          className="hover:text-primary text-accent transition-transform hover:-translate-y-2"
         >
           <div>
             <div className="flex flex-col items-center gap-y-1 text-6xl">
@@ -59,7 +59,7 @@ const LANGUAGES = [
   { name: "HTML", icon: <i className="devicon-html5-plain" /> },
   { name: "CSS", icon: <i className="devicon-css3-plain" /> },
   { name: "Verilog", icon: <Cpu className="h-16 w-16" /> },
-  { name: "SQL", icon: <Database className="h-16 w-16" /> },
+  { name: "SQL", icon: <Database className="opacity-100 h-16 w-16" /> },
 ];
 
 const LIBRARIES = [
