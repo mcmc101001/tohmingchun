@@ -15,7 +15,7 @@ export default function CardList() {
       <Card
         icon={<Luggage className="h-full w-full stroke-1" />}
         title="Tripflow"
-        description="Tripflow is an intelligent itinerary planner that optimises travelling itineraries and recalibrates plans on the go. I am currently working on the frontend side of the mobile application, as well as leading the integration of the backend and frontend. I am also involved in ideation of the product."
+        description="Tripflow is an intelligent itinerary planner that optimises travelling itineraries and recalibrates plans on the go. I am currently working on the frontend side of the mobile application, as well as leading the integration of the backend and frontend, particular in terms of making the entire application type-safe. I am also involved in ideation of the product."
         href="#"
         tech={[
           "React Native",
@@ -40,6 +40,7 @@ export default function CardList() {
           "Prisma ORM",
           "TailwindCSS",
           "Framer Motion",
+          "Jest",
           "Cypress",
           "AWS S3 + Cloudfront",
           "Github Actions",
@@ -58,7 +59,7 @@ export default function CardList() {
       <Card
         icon={<CircleDollarSign className="h-full w-full stroke-1" />}
         title="Expense Tracker"
-        description="A telegram bot to track expenses. Expenses are recorded through a telegram bot, which can subsequently be viewed on a web app."
+        description="A telegram bot to track expenses. Expenses are recorded through a telegram bot, which can subsequently be viewed on a Django web app. The telegram bot runs alongside the Django web server, so as to utilise Django's built-in features"
         href="https://t.me/spendlessmoneybot"
         githubRef="https://github.com/mcmc101001/expense-tracker"
         tech={["Django", "python-telegram-bot", "PostgreSQL", "Bootstrap"]}
@@ -120,8 +121,12 @@ function Card({
           </a>
         )}
         <div>
-          <div className="h-10 w-10 md:h-16 md:w-16">{icon}</div>
-          <h1 className="text-xl md:text-3xl font-semibold">{title}</h1>
+          <div className="h-12 w-12 md:h-16 md:w-16 rounded-full bg-primary p-2">
+            <div className="h-full w-full text-card">{icon}</div>
+          </div>
+          <h1 className="mt-2 text-xl md:text-3xl font-semibold text-primary">
+            {title}
+          </h1>
         </div>
         <p className="text-xs md:text-base">{description}</p>
         <p className="text-card-foreground/60 flex flex-wrap gap-x-2 md:gap-x-4">
