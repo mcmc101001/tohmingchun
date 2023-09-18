@@ -14,6 +14,7 @@ import {
   SiAmazonec2,
   SiAmazons3,
   SiGithubactions,
+  SiZod,
 } from "react-icons/si";
 
 function arrayToIcons(
@@ -63,7 +64,10 @@ const LANGUAGES = [
 ];
 
 const LIBRARIES = [
-  { name: "React", icon: <i className="devicon-react-original" /> },
+  {
+    name: "React/React Native",
+    icon: <i className="devicon-react-original" />,
+  },
   { name: "Next.js", icon: <i className="devicon-nextjs-original" /> },
   { name: "Django", icon: <i className="devicon-django-plain" /> },
   {
@@ -74,6 +78,10 @@ const LIBRARIES = [
   {
     name: "Framer motion",
     icon: <TbBrandFramerMotion className="h-16 w-16" />,
+  },
+  {
+    name: "Zod",
+    icon: <SiZod className="h-16 w-16" />,
   },
   { name: "Astro", icon: <SiAstro className="h-16 w-16" /> },
   { name: "Jest", icon: <i className="devicon-jest-plain" /> },
