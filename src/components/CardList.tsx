@@ -99,8 +99,6 @@ function Card({
 
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
-
-    console.log(clientX - left, clientY - top);
   }
 
   return (

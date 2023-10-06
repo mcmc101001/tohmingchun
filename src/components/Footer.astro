@@ -1,5 +1,14 @@
-<div
-  class="w-full text-sm font-light text-foreground py-6 bg-background flex px-6 lg:px-10 justify-center items-center"
+---
+interface Props {
+  isTransparent: boolean;
+}
+
+const { isTransparent } = Astro.props;
+---
+
+<footer
+  class={`w-full text-sm font-light text-foreground py-6 flex px-6 lg:px-10 justify-center items-center` +
+    (isTransparent ? " bg-transparent" : " bg-background")}
 >
   Built with Astro and hosted on Vercel
-</div>
+</footer>

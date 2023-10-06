@@ -23,6 +23,11 @@ export default function MobileNav() {
               </a>
             </li>
             <li>
+              <a href="/playground" className="text-foreground/80">
+                Playground
+              </a>
+            </li>
+            <li>
               <a
                 href="https://github.com/mcmc101001"
                 className="text-foreground/80"
