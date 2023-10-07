@@ -1,31 +1,62 @@
 import { cn } from "@/lib/utils";
+import {
+  $playgroundIsDraggingElement,
+  $playgroundSelectedObjects,
+} from "../../store/playgroundState";
+import { useStore } from "@nanostores/react";
+import type { MouseEvent, TouchEvent } from "react";
+import { useState } from "react";
 
 interface DraggableWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   dragId: string;
-  isSelected: boolean;
-  onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onMouseUp: (e: React.MouseEvent<HTMLDivElement>) => void;
-  onTouchStart: (e: React.TouchEvent<HTMLDivElement>) => void;
-  onTouchEnd: (e: React.TouchEvent<HTMLDivElement>) => void;
 }
 
 export default function DraggableWrapper({
   dragId,
-  onMouseDown,
-  onMouseUp,
-  onTouchStart,
-  onTouchEnd,
   children,
   className,
-  isSelected,
   ...props
 }: DraggableWrapperProps) {
+  const selectedObjects = useStore($playgroundSelectedObjects);
+  const [isHovered, setIsHovered] = useState(false);
+
+  function handleContact(e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) {
+    const id = e.currentTarget.getAttribute("drag-id");
+    $playgroundIsDraggingElement.set(true);
+
+    // if valid dragable object
+    if (id) {
+      // multi-select
+      if (e.shiftKey || e.metaKey) {
+        if (selectedObjects.includes(id)) {
+          // if already selected
+          $playgroundSelectedObjects.set(
+            selectedObjects.filter((item) => item !== id)
+          );
+        } else {
+          $playgroundSelectedObjects.set([...selectedObjects, id]);
+        }
+      } else {
+        if (selectedObjects.includes(id)) {
+          return;
+        } else {
+          $playgroundSelectedObjects.set([id]);
+        }
+      }
+    }
+  }
+  function handleRelease(e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) {
+    $playgroundIsDraggingElement.set(false);
+  }
+
   return (
     <div
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
+      onMouseDown={handleContact}
+      onMouseUp={handleRelease}
+      onTouchStart={handleContact}
+      onTouchEnd={handleRelease}
+      onMouseOver={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
       drag-id={dragId}
       className={cn(
@@ -34,8 +65,12 @@ export default function DraggableWrapper({
       )}
     >
       {children}
-      {isSelected && (
+      {selectedObjects.includes(dragId) ? (
         <div className="-inset-5 absolute border border-blue-300"></div>
+      ) : (
+        isHovered && (
+          <div className="-inset-5 absolute border opacity-50 border-blue-300"></div>
+        )
       )}
     </div>
   );

@@ -1,12 +1,22 @@
 import { useMotionValue } from "framer-motion";
 import type { MouseEvent, TouchEvent } from "react";
-import { useState } from "react";
 import DraggableWrapper from "@/components/playground/DraggableWrapper";
 import { getTransform, setTransform } from "@/lib/utils";
+import ScrollPrompter from "@/components/ScrollPrompter";
+import {
+  $playgroundIsDraggingElement,
+  $playgroundSelectedObjects,
+} from "../../store/playgroundState";
+import { useStore } from "@nanostores/react";
+import Skillset from "../Skillset";
 
-export default function PlaygroundBody() {
-  const [selectedObjects, setSelectedObjects] = useState<string[]>([]);
-  const [isDraggingElement, setIsDraggingElement] = useState(false);
+export default function PlaygroundBody({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const selectedObjects = useStore($playgroundSelectedObjects);
+  const isDraggingElement = useStore($playgroundIsDraggingElement);
 
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
@@ -20,7 +30,7 @@ export default function PlaygroundBody() {
   let prevTouchX = useMotionValue(0);
   let prevTouchY = useMotionValue(0);
 
-  function moveObject({ deltaX, deltaY }: { deltaX: number; deltaY: number }) {
+  function moveObjects({ deltaX, deltaY }: { deltaX: number; deltaY: number }) {
     for (const id of selectedObjects) {
       const element = document.querySelector(
         `[drag-id="${id}"]`
@@ -45,7 +55,7 @@ export default function PlaygroundBody() {
     mouseY.set(clientY);
 
     if (isDraggingElement) {
-      moveObject({
+      moveObjects({
         deltaX: mouseX.get() - prevMouseX.get(),
         deltaY: mouseY.get() - prevMouseY.get(),
       });
@@ -59,109 +69,81 @@ export default function PlaygroundBody() {
     touchX.set(e.touches[0].clientX);
     touchY.set(e.touches[0].clientY);
     if (isDraggingElement) {
-      moveObject({
+      moveObjects({
         deltaX: touchX.get() - prevTouchX.get(),
         deltaY: touchY.get() - prevTouchY.get(),
       });
     }
   }
 
-  function handleMouseDown(e: MouseEvent<HTMLElement>) {
-    const id = e.currentTarget.getAttribute("drag-id");
-    setIsDraggingElement(true);
-
-    // if valid dragable object
-    if (id) {
-      // multi-select
-      if (e.shiftKey || e.metaKey) {
-        if (selectedObjects.includes(id)) {
-          // if already selected
-          setSelectedObjects((prev) => prev.filter((item) => item !== id));
-        } else {
-          setSelectedObjects((prev) => [...prev, id]);
-        }
-      } else {
-        if (selectedObjects.includes(id)) {
-          return;
-        } else {
-          setSelectedObjects([id]);
-        }
-      }
-    }
-  }
-
-  function handleTouchStart(e: TouchEvent<HTMLElement>) {
+  function handleTouchStartBg(e: TouchEvent<HTMLElement>) {
     touchX.set(e.touches[0].clientX);
     touchY.set(e.touches[0].clientY);
     prevTouchX.set(e.touches[0].clientX);
     prevTouchY.set(e.touches[0].clientY);
-    const id = e.currentTarget.getAttribute("drag-id");
-    setIsDraggingElement(true);
-
-    // if valid dragable object
-    if (id) {
-      // multi-select
-      if (e.shiftKey || e.metaKey) {
-        if (selectedObjects.includes(id)) {
-          // if already selected
-          setSelectedObjects((prev) => prev.filter((item) => item !== id));
-        } else {
-          setSelectedObjects((prev) => [...prev, id]);
-        }
-      } else {
-        setSelectedObjects([id]);
-      }
-    }
   }
 
-  function handleMouseUp(e: MouseEvent<HTMLElement>) {
-    setIsDraggingElement(false);
-  }
-
-  function handleTouchEnd() {
+  function handleTouchEndBg() {
     touchX.set(0);
     touchY.set(0);
     prevTouchX.set(0);
     prevTouchY.set(0);
-    setIsDraggingElement(false);
   }
 
   return (
     <div
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
-      className={
-        "relative h-full w-full flex flex-col items-center justify-center gap-3 md:gap-12 text-slate-200 text-4xl " +
-        (isDraggingElement && " cursor-move")
-      }
+      onTouchStart={handleTouchStartBg}
+      onTouchEnd={handleTouchEndBg}
+      className={"relative h-full w-full flex flex-col items-center"}
     >
       <div
         className="inset-0 h-full w-full z-10 absolute"
-        onClick={() => setSelectedObjects([])}
+        onClick={() => $playgroundSelectedObjects.set([])}
       ></div>
-      <DraggableWrapper
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onMouseUp={handleMouseUp}
-        onTouchEnd={handleTouchEnd}
-        isSelected={selectedObjects.includes("draggable")}
-        dragId="draggable"
-      >
-        <h1 className="text-3xl md:text-6xl font-bold">Hi, I am Ming Chun !</h1>
-      </DraggableWrapper>
-      <DraggableWrapper
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onMouseUp={handleMouseUp}
-        onTouchEnd={handleTouchEnd}
-        isSelected={selectedObjects.includes("draggable2")}
-        dragId="draggable2"
-      >
-        <p className="md:text-4xl text-xl font-normal">
-          <span className="text-accent">Student. </span>
-          <span className="text-primary">Web developer.</span>
-        </p>
-      </DraggableWrapper>
+      <section className="container min-h-screen py-10 gap-3 md:gap-12 text-foreground flex flex-col items-center justify-center">
+        <DraggableWrapper dragId="greeting">
+          <h1 className="text-3xl md:text-6xl font-bold">
+            Hi, I am Ming Chun !
+          </h1>
+        </DraggableWrapper>
+        <DraggableWrapper dragId="introduction">
+          <p className="md:text-4xl text-xl font-normal">
+            <span className="text-accent">Student. </span>
+            <span className="text-primary">Web developer.</span>
+          </p>
+        </DraggableWrapper>
+        <ScrollPrompter />
+      </section>
+      <section className="container min-h-screen text-foreground flex flex-col justify-center gap-4 md:gap-8 md:px-16">
+        <DraggableWrapper dragId="about me">
+          <div className="flex items-center">
+            <h1 className="text-left md:text-5xl text-2xl font-bold">
+              About me
+            </h1>
+            <div className="border-b border-2 flex-1 h-0 ml-4 mt-1 md:mt-3"></div>
+          </div>
+        </DraggableWrapper>
+        <DraggableWrapper dragId="longIntroduction">
+          <p className="text-left text-lg md:text-2xl font-normal">
+            Hello! I am a year 2 computer engineering undergraduate at NUS. I
+            love drawing inspiration from the problems I face in my everyday
+            life and solving them with &lt; code /&gt;. My interests lie in web
+            development, in particular building typesafe applications, as well
+            as learning the latest developments in the frontend world.
+          </p>
+        </DraggableWrapper>
+        <DraggableWrapper dragId="profileAsClass">{children}</DraggableWrapper>
+      </section>
+      <section className="container min-h-screen py-10 text-foreground gap-5 md:gap-10 flex flex-col items-center justify-center">
+        <DraggableWrapper dragId="skillsAndProficiencies">
+          <h1 className="font-bold md:text-5xl text-2xl whitespace-nowrap">
+            &lt; Skills and Proficiencies /&gt;
+          </h1>
+        </DraggableWrapper>
+        <Skillset />
+      </section>
     </div>
   );
 }

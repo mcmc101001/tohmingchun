@@ -16,6 +16,7 @@ import {
   SiGithubactions,
   SiZod,
 } from "react-icons/si";
+import DraggableWrapper from "./playground/DraggableWrapper";
 
 function arrayToIcons(
   array: { name: string; icon: JSX.Element }[],
@@ -34,7 +35,7 @@ function arrayToIcons(
         <TooltipTrigger
           onClick={() => setTooltipOpenName(technical.name)}
           asChild
-          className="hover:text-primary text-accent transition-transform hover:-translate-y-2"
+          className="hover:text-primary text-accent transition-transform hover:-translate-y-2 z-40"
         >
           <div>
             <div className="flex flex-col items-center gap-y-1 text-6xl">
@@ -101,19 +102,27 @@ export default function Skillset() {
   const [tooltipOpenName, setTooltipOpenName] = useState("");
 
   return (
-    <div className="flex flex-col">
-      <div className="text-xl font-medium">LANGUAGES</div>
-      <div className="flex flex-row flex-wrap gap-8 mt-6">
-        {arrayToIcons(LANGUAGES, tooltipOpenName, setTooltipOpenName)}
-      </div>
-      <div className="text-xl font-medium mt-12">LIBRARIES & FRAMEWORKS</div>
-      <div className="flex flex-row flex-wrap gap-8 mt-6">
-        {arrayToIcons(LIBRARIES, tooltipOpenName, setTooltipOpenName)}
-      </div>
-      <div className="text-xl font-medium mt-12">TOOLS</div>
-      <div className="flex flex-row flex-wrap gap-8 mt-6">
-        {arrayToIcons(TOOLS, tooltipOpenName, setTooltipOpenName)}
-      </div>
+    <div className="flex flex-col gap-12">
+      <DraggableWrapper dragId="skillsetLanguages">
+        <div className="text-xl font-medium">LANGUAGES</div>
+        <div className="flex flex-row flex-wrap gap-8 mt-6">
+          {arrayToIcons(LANGUAGES, tooltipOpenName, setTooltipOpenName)}
+        </div>
+      </DraggableWrapper>
+
+      <DraggableWrapper dragId="skillsetLibraries">
+        <div className="text-xl font-medium">LIBRARIES & FRAMEWORKS</div>
+        <div className="flex flex-row flex-wrap gap-8 mt-6">
+          {arrayToIcons(LIBRARIES, tooltipOpenName, setTooltipOpenName)}
+        </div>
+      </DraggableWrapper>
+
+      <DraggableWrapper dragId="skillsetTools">
+        <div className="text-xl font-medium">TOOLS</div>
+        <div className="flex flex-row flex-wrap gap-8 mt-6">
+          {arrayToIcons(TOOLS, tooltipOpenName, setTooltipOpenName)}
+        </div>
+      </DraggableWrapper>
     </div>
   );
 }

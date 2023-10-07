@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { assets } from "@/lib/assets";
-import PlaygroundBody from "@/components/playground/PlaygroundBody";
 
 const SWITCHING_INTERVAL = 2000;
 
@@ -17,7 +16,11 @@ type PlaygroundBackground =
   | "ORANGE"
   | "NEUTRAL";
 
-export default function PlaygroundBackground() {
+export default function PlaygroundBackground({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const COLOURS: PlaygroundBackground[] = [
     "PURPLE",
     "RED",
@@ -48,7 +51,7 @@ export default function PlaygroundBackground() {
     <div className="h-full w-full flex flex-col items-center justify-center relative">
       <div
         className={cn(
-          "fixed -z-50 inset-0 transition-colors duration-700 opacity-20",
+          "fixed -z-50 inset-0 transition-colors duration-700 opacity-25",
           {
             "bg-purple-300": background === "PURPLE",
             "bg-red-300": background === "RED",
@@ -74,7 +77,7 @@ export default function PlaygroundBackground() {
           backgroundSize: "30px",
         }}
       />
-      <PlaygroundBody />
+      {children}
     </div>
   );
 }
