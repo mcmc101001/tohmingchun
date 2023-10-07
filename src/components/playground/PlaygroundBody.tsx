@@ -28,8 +28,6 @@ export default function PlaygroundBody() {
 
       if (element) {
         const { x, y } = getTransform(element);
-        console.log(id);
-        console.log(x, y);
 
         setTransform(element, {
           x: x + deltaX,
@@ -133,7 +131,7 @@ export default function PlaygroundBody() {
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
       className={
-        "relative h-full w-full flex flex-col items-center justify-center gap-3 md:gap-12  text-slate-200 text-4xl overflow-hidden " +
+        "relative h-full w-full flex flex-col items-center justify-center gap-3 md:gap-12 text-slate-200 text-4xl " +
         (isDraggingElement && " cursor-move")
       }
     >

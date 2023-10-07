@@ -7,14 +7,12 @@ interface Props {
   title: string;
   isNavbarTransparent?: boolean;
   isFooterTransparent?: boolean;
-  unscrollable?: boolean;
 }
 
 const {
   title,
   isNavbarTransparent = false,
   isFooterTransparent = false,
-  unscrollable = false,
 } = Astro.props;
 ---
 
@@ -33,7 +31,7 @@ const {
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class={"h-full bg-background " + (unscrollable && "overflow-hidden")}>
+  <body class={"h-full bg-background"}>
     <Navbar isTransparent={isNavbarTransparent} />
     <slot />
     <Footer isTransparent={isFooterTransparent} />

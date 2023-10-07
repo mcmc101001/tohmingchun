@@ -18,7 +18,6 @@ export function getTransform(el: HTMLElement): Transform {
       return { x: 0, y: 0 };
     }
     const match = calcualtedTransform.match(/matrix\((.*?)\)/);
-    console.log(match);
     const split = match![1].split(",");
     return {
       x: parseInt(split[4]),

@@ -28,7 +28,10 @@ export default function DraggableWrapper({
       onTouchEnd={onTouchEnd}
       {...props}
       drag-id={dragId}
-      className={cn(className, "cursor-move select-none z-20 relative")}
+      className={cn(
+        className,
+        "cursor-move select-none z-20 relative touch-none"
+      )}
     >
       {children}
       {isSelected && (
