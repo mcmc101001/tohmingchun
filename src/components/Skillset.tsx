@@ -17,6 +17,7 @@ import {
   SiZod,
 } from "react-icons/si";
 import DraggableWrapper from "./playground/DraggableWrapper";
+import useIsMobile from "@/hooks/useIsMobile";
 
 function arrayToIcons(
   array: { name: string; icon: JSX.Element }[],
@@ -99,25 +100,27 @@ const TOOLS = [
 ];
 
 export default function Skillset() {
+  const isMobile = useIsMobile();
+
   const [tooltipOpenName, setTooltipOpenName] = useState("");
 
   return (
     <div className="flex flex-col gap-12">
-      <DraggableWrapper dragId="skillsetLanguages">
+      <DraggableWrapper dragId="skillsetLanguages" isDraggable={!isMobile}>
         <div className="text-xl font-medium">LANGUAGES</div>
         <div className="flex flex-row flex-wrap gap-8 mt-6">
           {arrayToIcons(LANGUAGES, tooltipOpenName, setTooltipOpenName)}
         </div>
       </DraggableWrapper>
 
-      <DraggableWrapper dragId="skillsetLibraries">
+      <DraggableWrapper dragId="skillsetLibraries" isDraggable={!isMobile}>
         <div className="text-xl font-medium">LIBRARIES & FRAMEWORKS</div>
         <div className="flex flex-row flex-wrap gap-8 mt-6">
           {arrayToIcons(LIBRARIES, tooltipOpenName, setTooltipOpenName)}
         </div>
       </DraggableWrapper>
 
-      <DraggableWrapper dragId="skillsetTools">
+      <DraggableWrapper dragId="skillsetTools" isDraggable={!isMobile}>
         <div className="text-xl font-medium">TOOLS</div>
         <div className="flex flex-row flex-wrap gap-8 mt-6">
           {arrayToIcons(TOOLS, tooltipOpenName, setTooltipOpenName)}

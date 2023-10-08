@@ -1,5 +1,5 @@
 import { useMotionValue } from "framer-motion";
-import type { MouseEvent, TouchEvent } from "react";
+import { useState, type MouseEvent, type TouchEvent, useEffect } from "react";
 import DraggableWrapper from "@/components/playground/DraggableWrapper";
 import { getTransform, setTransform } from "@/lib/utils";
 import ScrollPrompter from "@/components/ScrollPrompter";
@@ -9,12 +9,15 @@ import {
 } from "../../store/playgroundState";
 import { useStore } from "@nanostores/react";
 import Skillset from "../Skillset";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function PlaygroundBody({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const isMobile = useIsMobile();
+
   const selectedObjects = useStore($playgroundSelectedObjects);
   const isDraggingElement = useStore($playgroundIsDraggingElement);
 
@@ -114,10 +117,15 @@ export default function PlaygroundBody({
             <span className="text-primary">Web developer.</span>
           </p>
         </DraggableWrapper>
+        <DraggableWrapper dragId="prompt">
+          <p className="text-xl font-light text-accent italic">
+            Psst...Try dragging us!
+          </p>
+        </DraggableWrapper>
         <ScrollPrompter />
       </section>
       <section className="container min-h-screen text-foreground flex flex-col justify-center gap-4 md:gap-8 md:px-16">
-        <DraggableWrapper dragId="about me">
+        <DraggableWrapper dragId="about me" isDraggable={!isMobile}>
           <div className="flex items-center">
             <h1 className="text-left md:text-5xl text-2xl font-bold">
               About me
@@ -125,7 +133,7 @@ export default function PlaygroundBody({
             <div className="border-b border-2 flex-1 h-0 ml-4 mt-1 md:mt-3"></div>
           </div>
         </DraggableWrapper>
-        <DraggableWrapper dragId="longIntroduction">
+        <DraggableWrapper dragId="longIntroduction" isDraggable={!isMobile}>
           <p className="text-left text-lg md:text-2xl font-normal">
             Hello! I am a year 2 computer engineering undergraduate at NUS. I
             love drawing inspiration from the problems I face in my everyday
@@ -134,10 +142,15 @@ export default function PlaygroundBody({
             as learning the latest developments in the frontend world.
           </p>
         </DraggableWrapper>
-        <DraggableWrapper dragId="profileAsClass">{children}</DraggableWrapper>
+        <DraggableWrapper dragId="profileAsClass" isDraggable={!isMobile}>
+          {children}
+        </DraggableWrapper>
       </section>
       <section className="container min-h-screen py-10 text-foreground gap-5 md:gap-10 flex flex-col items-center justify-center">
-        <DraggableWrapper dragId="skillsAndProficiencies">
+        <DraggableWrapper
+          dragId="skillsAndProficiencies"
+          isDraggable={!isMobile}
+        >
           <h1 className="font-bold md:text-5xl text-2xl whitespace-nowrap">
             &lt; Skills and Proficiencies /&gt;
           </h1>

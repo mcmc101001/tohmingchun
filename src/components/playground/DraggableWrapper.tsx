@@ -8,10 +8,12 @@ import type { MouseEvent, TouchEvent } from "react";
 import { useState } from "react";
 
 interface DraggableWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+  isDraggable?: boolean;
   dragId: string;
 }
 
 export default function DraggableWrapper({
+  isDraggable = true,
   dragId,
   children,
   className,
@@ -49,7 +51,7 @@ export default function DraggableWrapper({
     $playgroundIsDraggingElement.set(false);
   }
 
-  return (
+  return isDraggable ? (
     <div
       onMouseDown={handleContact}
       onMouseUp={handleRelease}
@@ -73,5 +75,7 @@ export default function DraggableWrapper({
         )
       )}
     </div>
+  ) : (
+    <>{children}</>
   );
 }
