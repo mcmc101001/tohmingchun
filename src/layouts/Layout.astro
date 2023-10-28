@@ -3,6 +3,7 @@ import { ViewTransitions } from "astro:transitions";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 import "@/styles/globals.css";
+import ScrollToHideWrapper from "@/components/ScrollToHideWrapper";
 interface Props {
   title: string;
   isNavbarTransparent?: boolean;
@@ -32,7 +33,9 @@ const {
     <ViewTransitions />
   </head>
   <body class={"h-full bg-background w-full overflow-x-hidden"}>
-    <Navbar isTransparent={isNavbarTransparent} />
+    <ScrollToHideWrapper client:load>
+      <Navbar isTransparent={isNavbarTransparent} />
+    </ScrollToHideWrapper>
     <slot />
     <Footer isTransparent={isFooterTransparent} />
   </body>

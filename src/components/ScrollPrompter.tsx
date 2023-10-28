@@ -10,7 +10,7 @@ export default function ScrollPrompter() {
     container: targetRef,
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(scrollYProgress, "change", () => {
     setScrollPrompterTransparency(Math.max(0.6 - 5 * scrollYProgress.get(), 0));
   });
 
