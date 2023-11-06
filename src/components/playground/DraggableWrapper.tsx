@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import {
   $playgroundIsDraggingElement,
   $playgroundSelectedObjects,
-} from "../../store/playgroundState";
+} from "../../store/playgroundStore";
 import { useStore } from "@nanostores/react";
 import type { MouseEvent, TouchEvent } from "react";
 import { useState } from "react";

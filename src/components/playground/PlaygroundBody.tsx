@@ -2,14 +2,15 @@ import { useMotionValue } from "framer-motion";
 import { useState, type MouseEvent, type TouchEvent, useEffect } from "react";
 import DraggableWrapper from "@/components/playground/DraggableWrapper";
 import { getTransform, setTransform } from "@/lib/utils";
-import ScrollPrompter from "@/components/ScrollPrompter";
+import ScrollPrompter from "@/components/utilities/ScrollPrompter";
 import {
   $playgroundIsDraggingElement,
   $playgroundSelectedObjects,
-} from "../../store/playgroundState";
+} from "../../store/playgroundStore";
 import { useStore } from "@nanostores/react";
-import Skillset from "../Skillset";
+import Skillset from "../landing/Skillset";
 import useIsMobile from "@/hooks/useIsMobile";
+import Timeline from "../landing/Timeline";
 
 export default function PlaygroundBody({
   children,
@@ -156,6 +157,14 @@ export default function PlaygroundBody({
           </h1>
         </DraggableWrapper>
         <Skillset />
+      </section>
+      <section className="container min-h-screen py-10 text-foreground gap-5 md:gap-10 flex flex-col items-center justify-center">
+        <DraggableWrapper dragId="timeline" isDraggable={!isMobile}>
+          <h1 className="font-bold md:text-5xl text-2xl whitespace-nowrap">
+            &lt; Timeline /&gt;
+          </h1>
+        </DraggableWrapper>
+        <Timeline />
       </section>
     </div>
   );

@@ -16,7 +16,7 @@ import {
   SiGithubactions,
   SiZod,
 } from "react-icons/si";
-import DraggableWrapper from "./playground/DraggableWrapper";
+import DraggableWrapper from "../playground/DraggableWrapper";
 import useIsMobile from "@/hooks/useIsMobile";
 
 function arrayToIcons(
