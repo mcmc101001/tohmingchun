@@ -37,7 +37,7 @@ export default function PlaygroundBody({
   function moveObjects({ deltaX, deltaY }: { deltaX: number; deltaY: number }) {
     for (const id of selectedObjects) {
       const element = document.querySelector(
-        `[drag-id="${id}"]`
+        `[drag-id="${id}"]`,
       ) as HTMLElement;
 
       if (element) {
@@ -100,42 +100,42 @@ export default function PlaygroundBody({
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStartBg}
       onTouchEnd={handleTouchEndBg}
-      className={"relative h-full w-full flex flex-col items-center"}
+      className={"relative flex h-full w-full flex-col items-center"}
     >
       <div
-        className="inset-0 h-full w-full z-10 absolute"
+        className="absolute inset-0 z-10 h-full w-full"
         onClick={() => $playgroundSelectedObjects.set([])}
       ></div>
-      <section className="container min-h-screen py-10 gap-3 md:gap-12 text-foreground flex flex-col items-center justify-center">
+      <section className="container flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">
         <DraggableWrapper dragId="greeting">
-          <h1 className="text-3xl md:text-6xl font-bold">
+          <h1 className="text-3xl font-bold md:text-6xl">
             Hi, I am Ming Chun !
           </h1>
         </DraggableWrapper>
         <DraggableWrapper dragId="introduction">
-          <p className="md:text-4xl text-xl font-normal">
+          <p className="text-xl font-normal md:text-4xl">
             <span className="text-accent">Student. </span>
             <span className="text-primary">Web developer.</span>
           </p>
         </DraggableWrapper>
         <DraggableWrapper dragId="prompt">
-          <p className="text-xl font-light text-accent italic">
+          <p className="text-xl font-light italic text-accent">
             Psst...Try dragging us!
           </p>
         </DraggableWrapper>
         <ScrollPrompter />
       </section>
-      <section className="container min-h-screen text-foreground flex flex-col justify-center gap-4 md:gap-8 md:px-16">
+      <section className="container flex min-h-screen flex-col justify-center gap-4 text-foreground md:gap-8 md:px-16">
         <DraggableWrapper dragId="about me" isDraggable={!isMobile}>
           <div className="flex items-center">
-            <h1 className="text-left md:text-5xl text-2xl font-bold">
+            <h1 className="text-left text-2xl font-bold md:text-5xl">
               About me
             </h1>
-            <div className="border-b border-2 flex-1 h-0 ml-4 mt-1 md:mt-3"></div>
+            <div className="ml-4 mt-1 h-0 flex-1 border-2 border-b md:mt-3"></div>
           </div>
         </DraggableWrapper>
         <DraggableWrapper dragId="longIntroduction" isDraggable={!isMobile}>
-          <p className="text-left text-lg md:text-2xl font-normal">
+          <p className="text-left text-lg font-normal md:text-2xl">
             Hello! I am a year 2 computer engineering undergraduate at NUS. I
             love drawing inspiration from the problems I face in my everyday
             life and solving them with &lt; code /&gt;. My interests lie in web
@@ -147,20 +147,20 @@ export default function PlaygroundBody({
           {children}
         </DraggableWrapper>
       </section>
-      <section className="container min-h-screen py-10 text-foreground gap-5 md:gap-10 flex flex-col items-center justify-center">
+      <section className="container flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">
         <DraggableWrapper
           dragId="skillsAndProficiencies"
           isDraggable={!isMobile}
         >
-          <h1 className="font-bold md:text-5xl text-2xl whitespace-nowrap">
+          <h1 className="whitespace-nowrap text-2xl font-bold md:text-5xl">
             &lt; Skills and Proficiencies /&gt;
           </h1>
         </DraggableWrapper>
         <Skillset />
       </section>
-      <section className="container min-h-screen py-10 text-foreground gap-5 md:gap-10 flex flex-col items-center justify-center">
+      <section className="container flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">
         <DraggableWrapper dragId="timeline" isDraggable={!isMobile}>
-          <h1 className="font-bold md:text-5xl text-2xl whitespace-nowrap">
+          <h1 className="whitespace-nowrap text-2xl font-bold md:text-5xl">
             &lt; Timeline /&gt;
           </h1>
         </DraggableWrapper>

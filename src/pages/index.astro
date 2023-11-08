@@ -12,7 +12,7 @@ import ProfileAsClass from "@/components/landing/ProfileAsClass.astro";
 >
   <main class="flex flex-col">
     <PlaygroundBackground client:load>
-      <PlaygroundBody client:load>
+      <PlaygroundBody client:only>
         <ProfileAsClass />
       </PlaygroundBody>
     </PlaygroundBackground>

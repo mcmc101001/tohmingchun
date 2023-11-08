@@ -35,6 +35,13 @@ export function setTransform(el: HTMLElement, transform: Transform) {
   el.style.setProperty(
     "transform",
     `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-    "important"
+    "important",
   );
+}
+
+export function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+  });
 }
