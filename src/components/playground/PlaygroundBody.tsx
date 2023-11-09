@@ -1,5 +1,5 @@
 import { useMotionValue } from "framer-motion";
-import { useState, type MouseEvent, type TouchEvent, useEffect } from "react";
+import { type MouseEvent, type TouchEvent } from "react";
 import DraggableWrapper from "@/components/playground/DraggableWrapper";
 import { getTransform, setTransform } from "@/lib/utils";
 import ScrollPrompter from "@/components/utilities/ScrollPrompter";
@@ -138,13 +138,15 @@ export default function PlaygroundBody({
           <p className="text-left text-lg font-normal md:text-2xl">
             Hello! I am a year 2 computer engineering undergraduate at NUS. I
             love drawing inspiration from the problems I face in my everyday
-            life and solving them with &lt; code /&gt;. My interests lie in web
-            development, in particular building typesafe applications, as well
-            as learning the latest developments in the frontend world.
+            life and solving them with{" "}
+            <span className="inline-block">&lt; code /&gt;</span>. My interests
+            lie in web development, in particular building typesafe
+            applications, as well as learning the latest developments in the
+            frontend world.
           </p>
         </DraggableWrapper>
         <DraggableWrapper dragId="profileAsClass" isDraggable={!isMobile}>
-          {children}
+          <div className="z-50">{children}</div>
         </DraggableWrapper>
       </section>
       <section className="container flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">

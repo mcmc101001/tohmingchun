@@ -33,7 +33,7 @@ export default function DraggableWrapper({
         if (selectedObjects.includes(id)) {
           // if already selected
           $playgroundSelectedObjects.set(
-            selectedObjects.filter((item) => item !== id)
+            selectedObjects.filter((item) => item !== id),
           );
         } else {
           $playgroundSelectedObjects.set([...selectedObjects, id]);
@@ -47,6 +47,7 @@ export default function DraggableWrapper({
       }
     }
   }
+
   function handleRelease(e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) {
     $playgroundIsDraggingElement.set(false);
   }
@@ -63,15 +64,15 @@ export default function DraggableWrapper({
       drag-id={dragId}
       className={cn(
         className,
-        "cursor-move select-none z-20 relative touch-none"
+        "relative z-20 cursor-move touch-none select-none",
       )}
     >
       {children}
       {selectedObjects.includes(dragId) ? (
-        <div className="-inset-5 absolute border border-blue-300"></div>
+        <div className="absolute -inset-5 border border-blue-300"></div>
       ) : (
         isHovered && (
-          <div className="-inset-5 absolute border opacity-50 border-blue-300"></div>
+          <div className="absolute -inset-5 border border-blue-300 opacity-50"></div>
         )
       )}
     </div>
