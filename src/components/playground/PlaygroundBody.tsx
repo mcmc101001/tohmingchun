@@ -146,7 +146,7 @@ export default function PlaygroundBody({
           </p>
         </DraggableWrapper>
         <DraggableWrapper dragId="profileAsClass" isDraggable={!isMobile}>
-          <div className="z-50">{children}</div>
+          <div className="z-40">{children}</div>
         </DraggableWrapper>
       </section>
       <section className="container flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">
