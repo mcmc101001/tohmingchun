@@ -54,33 +54,35 @@ export default function Timeline() {
   };
 
   return (
-    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <div className="grid h-full w-full grid-cols-6 gap-16">
-        <div className="col-span-2 ml-auto h-full w-5 rounded-full bg-primary/60" />
-        <div className="col-span-4 flex h-full flex-col gap-16 py-20">
-          <SortableContext
-            items={timelineObjectsId}
-            strategy={verticalListSortingStrategy}
-          >
-            {timeline.map((timelineObject) => {
-              return (
-                <TimelineObject
-                  key={timelineObject.id}
-                  timeline={timelineObject}
-                />
-              );
-            })}
-          </SortableContext>
-          {createPortal(
-            <DragOverlay>
-              {activeObject && (
-                <TimelineObject isOverlay timeline={activeObject} />
-              )}
-            </DragOverlay>,
-            document.body,
-          )}
+    <div className="min-w-screen max-w-7xl overflow-x-hidden pr-2 md:pr-8">
+      <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+        <div className="grid h-full grid-cols-12 gap-4 md:grid-cols-6 md:gap-16">
+          <div className="col-span-2 ml-auto h-full w-3 rounded-full bg-primary/60 md:w-5" />
+          <div className="col-span-10 flex h-full flex-col gap-16 py-20 md:col-span-4">
+            <SortableContext
+              items={timelineObjectsId}
+              strategy={verticalListSortingStrategy}
+            >
+              {timeline.map((timelineObject) => {
+                return (
+                  <TimelineObject
+                    key={timelineObject.id}
+                    timeline={timelineObject}
+                  />
+                );
+              })}
+            </SortableContext>
+            {createPortal(
+              <DragOverlay>
+                {activeObject && (
+                  <TimelineObject isOverlay timeline={activeObject} />
+                )}
+              </DragOverlay>,
+              document.body,
+            )}
+          </div>
         </div>
-      </div>
-    </DndContext>
+      </DndContext>
+    </div>
   );
 }

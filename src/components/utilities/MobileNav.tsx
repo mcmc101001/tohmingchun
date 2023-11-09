@@ -1,11 +1,4 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/Sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet";
 import { Menu } from "lucide-react";
 
 export default function MobileNav() {
@@ -16,7 +9,7 @@ export default function MobileNav() {
           <Menu className="text-foreground" />
         </SheetTrigger>
         <SheetContent className="w-fit text-foreground">
-          <ul className="items-end pr-12 pl-28 flex mt-5 flex-col text-xl gap-y-4">
+          <ul className="mt-5 flex flex-col items-end gap-y-4 pl-28 pr-12 text-xl">
             <li>
               <a href="/projects" className="text-foreground/80">
                 Projects
