@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Badge from "@/components/ui/Badge.astro";
+import { formatDateDayMonthYear } from "@/lib/utils";
+const postEntries = await getCollection("posts");
+
+const sortedEntries = postEntries.sort((a, b) => {
+  return b.data.date.getTime() - a.data.date.getTime();
+});
+---
+
+<Layout title={"Posts"} isNavbarTransparent={false} isFooterTransparent={true}>
+  <main class="w-screen flex flex-col items-center pt-28 pb-10 text-foreground">
+    <div class="flex flex-col gap-6 w-full px-6 md:w-[42rem]">
+      <p class="text-lg">
+        Welcome to my blog. I sometimes put some random thoughts here.
+      </p>
+      <div class="h-px w-full bg-foreground"></div>
+      <ul class="flex flex-col gap-4 ml-5">
+        {
+          sortedEntries.map((entry) => (
+            <li class="list-disc list-item w-full text-lg">
+              <div class="flex items-center gap-2">
+                <div>
+                  <a
+                    class="text-foreground hover:text-blue-600 hover:underline"
+                    href={`/posts/${entry.slug}`}
+                  >
+                    <span>{entry.data.title}</span>
+                  </a>
+                  <span class="ml-2">
+                    {entry.data.tags.map((tag) => (
+                      <Badge>{tag}</Badge>
+                    ))}
+                  </span>
+                </div>
+                <div class="text-right flex-1 text-foreground/70">
+                  {formatDateDayMonthYear(entry.data.date)}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </main>
+</Layout>

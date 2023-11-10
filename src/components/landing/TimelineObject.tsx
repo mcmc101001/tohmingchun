@@ -1,7 +1,7 @@
 import type { TimelineObjectType } from "@/store/timelineStore";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { formatDate } from "@/lib/utils";
+import { formatDateMonthYear } from "@/lib/utils";
 
 interface TimelineObjectProps {
   timeline: TimelineObjectType;
@@ -44,7 +44,8 @@ export default function TimelineObject({
           {timeline.title}
         </h1>
         <p className="text-base italic text-transparent md:text-xl">
-          {formatDate(timeline.startDate)} - {formatDate(timeline.endDate)}
+          {formatDateMonthYear(timeline.startDate)} -{" "}
+          {formatDateMonthYear(timeline.endDate)}
         </p>
         <ul className="ml-6 mt-2 flex flex-col gap-2 text-sm md:text-lg">
           {timeline.description.map((text) => {
@@ -79,7 +80,8 @@ export default function TimelineObject({
         {timeline.title}
       </h1>
       <p className="text-base italic text-accent-foreground md:text-xl">
-        {formatDate(timeline.startDate)} - {formatDate(timeline.endDate)}
+        {formatDateMonthYear(timeline.startDate)} -{" "}
+        {formatDateMonthYear(timeline.endDate)}
       </p>
       <ul className="ml-6 mt-2 flex flex-col gap-2 text-sm md:text-lg">
         {timeline.description.map((text) => {

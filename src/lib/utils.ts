@@ -39,9 +39,17 @@ export function setTransform(el: HTMLElement, transform: Transform) {
   );
 }
 
-export function formatDate(date: Date) {
-  return date.toLocaleDateString("en-US", {
+export function formatDateMonthYear(date: Date) {
+  return date.toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
+  });
+}
+
+export function formatDateDayMonthYear(date: Date) {
+  return date.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
   });
 }
