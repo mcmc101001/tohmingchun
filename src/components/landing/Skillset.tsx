@@ -15,6 +15,7 @@ import {
   SiAmazons3,
   SiGithubactions,
   SiZod,
+  SiDocker,
 } from "react-icons/si";
 import DraggableWrapper from "../playground/DraggableWrapper";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -22,7 +23,7 @@ import useIsMobile from "@/hooks/useIsMobile";
 function arrayToIcons(
   array: { name: string; icon: JSX.Element }[],
   tooltipOpenName: string,
-  setTooltipOpenName: (value: React.SetStateAction<string>) => void
+  setTooltipOpenName: (value: React.SetStateAction<string>) => void,
 ) {
   return array.map((technical) => (
     <TooltipProvider key={technical.name} delayDuration={0}>
@@ -36,7 +37,7 @@ function arrayToIcons(
         <TooltipTrigger
           onClick={() => setTooltipOpenName(technical.name)}
           asChild
-          className="hover:text-primary text-accent transition-transform hover:-translate-y-2 z-40"
+          className="z-40 text-accent transition-transform hover:-translate-y-2 hover:text-primary"
         >
           <div>
             <div className="flex flex-col items-center gap-y-1 text-6xl">
@@ -53,16 +54,16 @@ function arrayToIcons(
 }
 
 const LANGUAGES = [
-  { name: "C", icon: <i className="devicon-c-plain" /> },
-  { name: "C++", icon: <i className="devicon-cplusplus-plain" /> },
+  { name: "Python", icon: <i className="devicon-python-plain" /> },
   { name: "JavaScript", icon: <i className="devicon-javascript-plain" /> },
   { name: "TypeScript", icon: <i className="devicon-typescript-plain" /> },
-  { name: "Python", icon: <i className="devicon-python-plain" /> },
+  { name: "C", icon: <i className="devicon-c-plain" /> },
+  { name: "C++", icon: <i className="devicon-cplusplus-plain" /> },
   { name: "Java", icon: <i className="devicon-java-plain" /> },
   { name: "HTML", icon: <i className="devicon-html5-plain" /> },
   { name: "CSS", icon: <i className="devicon-css3-plain" /> },
   { name: "Verilog", icon: <Cpu className="h-16 w-16" /> },
-  { name: "SQL", icon: <Database className="opacity-100 h-16 w-16" /> },
+  { name: "SQL", icon: <Database className="h-16 w-16 opacity-100" /> },
 ];
 
 const LIBRARIES = [
@@ -71,6 +72,11 @@ const LIBRARIES = [
     icon: <i className="devicon-react-original" />,
   },
   { name: "Next.js", icon: <i className="devicon-nextjs-original" /> },
+  {
+    name: "Vue",
+    icon: <i className="devicon-vuejs-plain"></i>,
+  },
+  { name: "FastAPI", icon: <i className="devicon-fastapi-plain" /> },
   { name: "Django", icon: <i className="devicon-django-plain" /> },
   {
     name: "python-telegram-bot",
@@ -92,6 +98,7 @@ const LIBRARIES = [
 ];
 
 const TOOLS = [
+  { name: "Docker", icon: <SiDocker className="h-16 w-16" /> },
   { name: "AWS EC2", icon: <SiAmazonec2 className="h-16 w-16" /> },
   { name: "AWS S3 + Cloudfront", icon: <SiAmazons3 className="h-16 w-16" /> },
   { name: "Git", icon: <i className="devicon-git-plain" /> },
@@ -108,21 +115,21 @@ export default function Skillset() {
     <div className="flex flex-col gap-12">
       <DraggableWrapper dragId="skillsetLanguages" isDraggable={!isMobile}>
         <div className="text-xl font-medium">LANGUAGES</div>
-        <div className="flex flex-row flex-wrap gap-8 mt-6">
+        <div className="mt-6 flex flex-row flex-wrap gap-8">
           {arrayToIcons(LANGUAGES, tooltipOpenName, setTooltipOpenName)}
         </div>
       </DraggableWrapper>
 
       <DraggableWrapper dragId="skillsetLibraries" isDraggable={!isMobile}>
         <div className="text-xl font-medium">LIBRARIES & FRAMEWORKS</div>
-        <div className="flex flex-row flex-wrap gap-8 mt-6">
+        <div className="mt-6 flex flex-row flex-wrap gap-8">
           {arrayToIcons(LIBRARIES, tooltipOpenName, setTooltipOpenName)}
         </div>
       </DraggableWrapper>
 
       <DraggableWrapper dragId="skillsetTools" isDraggable={!isMobile}>
         <div className="text-xl font-medium">TOOLS</div>
-        <div className="flex flex-row flex-wrap gap-8 mt-6">
+        <div className="mt-6 flex flex-row flex-wrap gap-8">
           {arrayToIcons(TOOLS, tooltipOpenName, setTooltipOpenName)}
         </div>
       </DraggableWrapper>

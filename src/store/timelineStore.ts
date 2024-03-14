@@ -39,7 +39,7 @@ const initialTimeline: TimelineObjectType[] = [
     id: 3,
     title: "Research Assistant",
     description: [
-      "Wrote and published a research paper in collaboration with A*STAR Institute of High Performance Computing in journal SN Applied Sciences, where charge distribution profiles on plasmonic nanoparticles were used to predict induced optical torque",
+      "Wrote and published two research papers in collaboration with A*STAR Institute of High Performance Computing, where charge distribution profiles on plasmonic nanoparticles were used to predict induced optical torque",
       "Presented my work at a poster during an international conference (International Conference on Materials for Advanced Technologies 2019",
     ],
     startDate: new Date("2019-06-01"),

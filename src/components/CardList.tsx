@@ -5,6 +5,7 @@ import {
   GraduationCap,
   GithubIcon,
   CircleDollarSign,
+  Search,
 } from "lucide-react";
 import { PiTelegramLogo } from "react-icons/pi";
 import { Button } from "@/components/ui/Button";
@@ -21,6 +22,15 @@ type Card = {
 };
 
 const cards: Card[] = [
+  {
+    title: "whereToEat",
+    description:
+      "whereToEat is a Progressive Web App that helps users filter and find places to eat, as well as attractions to visit near them! The backend is deployed as a Docker container onto DigitalOcean.",
+    href: "https://where-to-eat-mcmc101001.vercel.app/",
+    tech: ["FastAPI", "Vue", "Typescript", "Docker"],
+    icon: <Search className="h-full w-full stroke-1" />,
+    githubRef: "https://github.com/mcmc101001/whereToEat",
+  },
   {
     title: "Tripflow",
     description:
