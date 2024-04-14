@@ -8,7 +8,7 @@ tags: ["python", "tech"]
 
 _Published on: 14/3/2024_
 
-I have always disliked woking on a python project. The lack of type safety and thus intellisense always made working with it frustrating. I never know what inputs a function takes, and what it returns. And of course, that's because I never did it properly. Here's some things I have learn to make python development more enjoyable.
+I have always disliked woking on a python project. The lack of type safety and thus intellisense always made working with it frustrating. I never know what inputs a function takes, and what it returns. And of course, that's because I never did it properly. I got a bit of guidance from a fellow software engineer and here's some things I have learn to make python development more enjoyable.
 
 ## Dependency management
 
