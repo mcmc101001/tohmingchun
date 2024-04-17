@@ -6,6 +6,7 @@ import {
   GithubIcon,
   CircleDollarSign,
   Search,
+  Palette,
 } from "lucide-react";
 import { PiTelegramLogo } from "react-icons/pi";
 import { Button } from "@/components/ui/Button";
@@ -23,11 +24,28 @@ type Card = {
 
 const cards: Card[] = [
   {
+    title: "AI Icon Generator",
+    description:
+      "AI Icon Generator is a SaaS that utilises DALL-E to generate icons with a high degree of user customisation. It is built with Next.js and deployed fully on AWS using SST.",
+    href: "https://aiicongen.com/",
+    tech: [
+      "Next.js",
+      "Typescript",
+      "Prisma ORM",
+      "TailwindCSS",
+      "AWS",
+      "NextAuth",
+      "Supabase",
+      "SST",
+    ],
+    icon: <Palette className="h-full w-full stroke-1" />,
+  },
+  {
     title: "whereToEat",
     description:
       "whereToEat is a Progressive Web App that helps users filter and find places to eat, as well as attractions to visit near them! The backend is deployed as a Docker container onto DigitalOcean.",
     href: "https://wheretoeat.pages.dev/",
-    tech: ["FastAPI", "Vue", "Typescript", "Docker"],
+    tech: ["FastAPI", "Vue", "Typescript", "TailwindCSS", "Docker"],
     icon: <Search className="h-full w-full stroke-1" />,
     githubRef: "https://github.com/mcmc101001/whereToEat",
   },
