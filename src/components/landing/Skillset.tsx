@@ -16,6 +16,8 @@ import {
   SiGithubactions,
   SiZod,
   SiDocker,
+  SiSupabase,
+  SiStripe,
 } from "react-icons/si";
 import DraggableWrapper from "../playground/DraggableWrapper";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -83,6 +85,7 @@ const LIBRARIES = [
     icon: <PiTelegramLogo className="h-16 w-16" />,
   },
   { name: "TailwindCSS", icon: <i className="devicon-tailwindcss-plain" /> },
+  { name: "Material UI", icon: <i className="devicon-materialui-plain" /> },
   {
     name: "Framer motion",
     icon: <TbBrandFramerMotion className="h-16 w-16" />,
@@ -103,6 +106,8 @@ const TOOLS = [
   { name: "AWS S3 + Cloudfront", icon: <SiAmazons3 className="h-16 w-16" /> },
   { name: "Git", icon: <i className="devicon-git-plain" /> },
   { name: "GitHub Actions", icon: <SiGithubactions className="h-16 w-16" /> },
+  { name: "Supabase", icon: <SiSupabase className="h-16 w-16" /> },
+  { name: "Stripe", icon: <SiStripe className="h-16 w-16" /> },
   { name: "LaTeX", icon: <i className="devicon-latex-plain" /> },
 ];
 
