@@ -15,6 +15,16 @@ interface TimelineStore {
 
 const initialTimeline: TimelineObjectType[] = [
   {
+    id: 0,
+    title:
+      "Exchange student at EPFL (Ecole Polytechnique Federale de Lausanne)",
+    description: [
+      "Studying Master level courses in Machine Learning, Information Theory and Information Security",
+    ],
+    startDate: new Date("2024-09-09"),
+    endDate: new Date("2025-02-01"),
+  },
+  {
     id: 1,
     title: "Software Engineering Intern at Entroview",
     description: [

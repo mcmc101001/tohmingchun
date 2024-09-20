@@ -18,6 +18,8 @@ import {
   SiDocker,
   SiSupabase,
   SiStripe,
+  SiSwagger,
+  SiSst,
 } from "react-icons/si";
 import DraggableWrapper from "../playground/DraggableWrapper";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -57,6 +59,7 @@ function arrayToIcons(
 
 const LANGUAGES = [
   { name: "Python", icon: <i className="devicon-python-plain" /> },
+  { name: "Golang", icon: <i className="devicon-go-plain" /> },
   { name: "JavaScript", icon: <i className="devicon-javascript-plain" /> },
   { name: "TypeScript", icon: <i className="devicon-typescript-plain" /> },
   { name: "C", icon: <i className="devicon-c-plain" /> },
@@ -109,6 +112,8 @@ const TOOLS = [
   { name: "Supabase", icon: <SiSupabase className="h-16 w-16" /> },
   { name: "Stripe", icon: <SiStripe className="h-16 w-16" /> },
   { name: "LaTeX", icon: <i className="devicon-latex-plain" /> },
+  { name: "OpenAPI/Swagger", icon: <SiSwagger className="h-16 w-16" /> },
+  { name: "SST", icon: <SiSst className="h-16 w-16" /> },
 ];
 
 export default function Skillset() {
