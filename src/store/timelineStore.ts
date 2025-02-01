@@ -15,7 +15,7 @@ interface TimelineStore {
 
 const initialTimeline: TimelineObjectType[] = [
   {
-    id: 0,
+    id: 1,
     title:
       "Exchange student at EPFL (Ecole Polytechnique Federale de Lausanne)",
     description: [
@@ -25,7 +25,7 @@ const initialTimeline: TimelineObjectType[] = [
     endDate: new Date("2025-02-01"),
   },
   {
-    id: 1,
+    id: 2,
     title: "Software Engineering Intern at Entroview",
     description: [
       "Worked as a frontend developer at Entroview, a deep tech startup in Paris, solely developing the frontend of a client-facing application from scratch",
@@ -35,7 +35,7 @@ const initialTimeline: TimelineObjectType[] = [
     endDate: new Date("2024-09-06"),
   },
   {
-    id: 2,
+    id: 3,
     title: "Teaching Assistant at NUS",
     description: [
       "1 of 20 TAs for CG1111A - Engineering Principles and Practice I",
@@ -45,7 +45,7 @@ const initialTimeline: TimelineObjectType[] = [
     endDate: new Date("2023-12-1"),
   },
   {
-    id: 3,
+    id: 4,
     title: "StudyStash",
     description: [
       "Developed StudyStash, a web application which serves as a database for exam resources, where users can share cheatsheets, notes, past papers and solutions to aid others in revision",
@@ -56,7 +56,7 @@ const initialTimeline: TimelineObjectType[] = [
     endDate: new Date("2023-08-01"),
   },
   {
-    id: 4,
+    id: 5,
     title: "Research Assistant",
     description: [
       "Wrote and published two research papers in collaboration with A*STAR Institute of High Performance Computing, where charge distribution profiles on plasmonic nanoparticles were used to predict induced optical torque",
