@@ -136,7 +136,7 @@ export default function PlaygroundBody({
         </DraggableWrapper>
         <DraggableWrapper dragId="longIntroduction" isDraggable={!isMobile}>
           <p className="text-left text-lg font-normal md:text-2xl">
-            Hello! I am a year 2 computer engineering undergraduate at NUS. I
+            Hello! I am a year 3 computer engineering undergraduate at NUS. I
             love drawing inspiration from the problems I face in my everyday
             life and solving them with{" "}
             <span className="inline-block">&lt; code /&gt;</span>. My interests
