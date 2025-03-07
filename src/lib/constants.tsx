@@ -8,7 +8,7 @@ import {
 import { PiTelegramLogo } from "react-icons/pi";
 import icon_generator from "../assets/icon-generator.png";
 import studystash from "../assets/studystash.svg";
-import whereToEat from "../assets/wheretoeat.png";
+import whereToEat from "../assets/whereToEat.png";
 
 export type Card = {
   title: string;
