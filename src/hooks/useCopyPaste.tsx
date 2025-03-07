@@ -5,7 +5,6 @@ import {
   $playgroundDraggableElementRegistry,
   $playgroundSelectedObjects,
   addSelectedObjects,
-  clearCopiedObjects,
   setCopiedObjects,
 } from "@/store/playgroundStore";
 import { useStore } from "@nanostores/react";
@@ -14,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function useCopyPaste() {
   const [renderedCopiedElements, setRenderedCopiedElements] = useState<
-    ReactNode[]
+    [string, ReactNode][]
   >([]);
 
   const selectedObjects = useStore($playgroundSelectedObjects);
@@ -29,16 +28,16 @@ export default function useCopyPaste() {
         setCopiedObjects(selectedObjects);
         console.log("copied", selectedObjects);
       } else if (e.ctrlKey && code === "KeyV") {
-        console.log("pasting", selectedObjects);
+        console.log("pasting", copiedItems);
         const newDragIds: string[] = [];
-        const newElements: ReactNode[] = [];
-        selectedObjects.forEach((dragId) => {
+        const newElements: [string, ReactNode][] = [];
+        copiedItems.forEach((dragId) => {
           const element = document.querySelector(
             `[drag-id="${dragId}"]`,
           ) as HTMLElement;
 
           const { x, y } = getTransform(element);
-          const children = element.children;
+          const dimensions = element.getBoundingClientRect();
 
           const newDragId = `${dragId.split("-")[0]}-copy-${uuidv4()}`;
 
@@ -48,7 +47,9 @@ export default function useCopyPaste() {
               dragId={newDragId}
               className="absolute"
               style={{
-                transform: `translate3d(${x + 40}px, ${y - 30}px, 0)`,
+                height: `${dimensions.height}px`,
+                width: `${dimensions.width}px`,
+                transform: `translate3d(${x + 40}px, ${y + 30}px, 0)`,
               }}
             >
               {objectRegistry[dragId]}
@@ -56,24 +57,17 @@ export default function useCopyPaste() {
           );
 
           newDragIds.push(newDragId);
-          newElements.push(copiedElement);
+          newElements.push([dragId, copiedElement]);
         });
         addSelectedObjects(newDragIds);
         setRenderedCopiedElements((prev) => [...prev, ...newElements]);
-        clearCopiedObjects();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [
-    copiedItems,
-    selectedObjects,
-    addSelectedObjects,
-    setCopiedObjects,
-    clearCopiedObjects,
-  ]);
+  }, [copiedItems, selectedObjects, addSelectedObjects, setCopiedObjects]);
 
   return renderedCopiedElements;
 }

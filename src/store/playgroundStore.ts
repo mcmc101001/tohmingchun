@@ -17,10 +17,6 @@ export function setCopiedObjects(objects: string[]) {
   $playgroundCopiedItems.set(objects);
 }
 
-export function clearCopiedObjects() {
-  $playgroundCopiedItems.set([]);
-}
-
 export function clearSelectedObjects() {
   $playgroundSelectedObjects.set([]);
 }

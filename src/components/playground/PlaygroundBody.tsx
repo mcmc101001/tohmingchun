@@ -6,6 +6,7 @@ import useIsMobile from "@/hooks/useIsMobile";
 import Timeline from "../landing/Timeline";
 import useCopyPaste from "@/hooks/useCopyPaste";
 import useDragMotion from "@/hooks/useDragMotion";
+import { createPortal } from "react-dom";
 
 export default function PlaygroundBody({
   children,
@@ -36,7 +37,14 @@ export default function PlaygroundBody({
           clearSelectedObjects();
         }}
       ></div>
-      <section className="container flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">
+      {renderedCopiedElements.map(([dragId, element]) =>
+        createPortal(
+          element,
+          document.querySelector(`[drag-id="${dragId}"]`)
+            ?.parentElement as HTMLElement,
+        ),
+      )}
+      <section className="container relative flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">
         <DraggableWrapper dragId="greeting">
           <h1 className="text-3xl font-bold md:text-6xl">
             Hi, I am Ming Chun !
@@ -56,8 +64,7 @@ export default function PlaygroundBody({
         </DraggableWrapper>
         <ScrollPrompter />
       </section>
-      <section className="container flex min-h-screen flex-col justify-center gap-4 text-foreground md:gap-8 md:px-16">
-        {renderedCopiedElements}
+      <section className="container relative flex min-h-screen flex-col justify-center gap-4 text-foreground md:gap-8 md:px-16">
         <DraggableWrapper dragId="about me" isDraggable={!isMobile}>
           <div className="flex items-center">
             <h1 className="text-left text-2xl font-bold md:text-5xl">
@@ -81,7 +88,7 @@ export default function PlaygroundBody({
           <div className="z-40">{children}</div>
         </DraggableWrapper>
       </section>
-      <section className="container flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">
+      <section className="container relative flex min-h-screen flex-col items-center justify-center gap-5 py-10 text-foreground md:gap-10">
         <DraggableWrapper
           dragId="skillsAndProficiencies"
           isDraggable={!isMobile}
