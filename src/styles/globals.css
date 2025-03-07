@@ -47,3 +47,9 @@
     --ring: 35.5 91.7% 32.9%;
   }
 }
+
+@media (min-width: 768px) {
+  @view-transition {
+    navigation: auto;
+  }
+}

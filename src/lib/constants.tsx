@@ -6,6 +6,9 @@ import {
   Palette,
 } from "lucide-react";
 import { PiTelegramLogo } from "react-icons/pi";
+import icon_generator from "../assets/icon-generator.png";
+import studystash from "../assets/studystash.svg";
+import whereToEat from "../assets/wheretoeat.png";
 
 export type Card = {
   title: string;
@@ -16,6 +19,8 @@ export type Card = {
   callToActionText?: string;
   callToActionDisabled?: boolean;
   icon: JSX.Element;
+  imgSrc?: string;
+  id: string | number;
 };
 
 export const cards: Card[] = [
@@ -35,6 +40,8 @@ export const cards: Card[] = [
       "SST",
     ],
     icon: <Palette className="h-full w-full stroke-1" />,
+    imgSrc: icon_generator.src,
+    id: "icon-generator",
   },
   {
     title: "whereToEat",
@@ -44,23 +51,8 @@ export const cards: Card[] = [
     tech: ["FastAPI", "Vue", "Typescript", "TailwindCSS", "Docker"],
     icon: <Search className="h-full w-full stroke-1" />,
     githubRef: "https://github.com/mcmc101001/whereToEat",
-  },
-  {
-    title: "Tripflow",
-    description:
-      "Tripflow is an intelligent itinerary planner that optimises travelling itineraries and recalibrates plans on the go. I am currently working on the frontend side of the mobile application, as well as leading the integration of the backend and frontend, particular in terms of making the entire application type-safe. I am also involved in ideation of the product.",
-    href: "#",
-    tech: [
-      "React Native",
-      "Expo",
-      "Typescript",
-      "Express.js",
-      "Prisma ORM",
-      "mySQL",
-    ],
-    icon: <Luggage className="h-full w-full stroke-1" />,
-    callToActionDisabled: true,
-    callToActionText: "In Progress",
+    id: "whereToEat",
+    imgSrc: whereToEat.src,
   },
   {
     icon: <GraduationCap className="h-full w-full stroke-1" />,
@@ -82,6 +74,26 @@ export const cards: Card[] = [
       "NextAuth",
       "mySQL",
     ],
+    id: "studystash",
+    imgSrc: studystash.src,
+  },
+  {
+    title: "Tripflow",
+    description:
+      "Tripflow is an intelligent itinerary planner that optimises travelling itineraries and recalibrates plans on the go. I am currently working on the frontend side of the mobile application, as well as leading the integration of the backend and frontend, particular in terms of making the entire application type-safe. I am also involved in ideation of the product.",
+    href: "#",
+    tech: [
+      "React Native",
+      "Expo",
+      "Typescript",
+      "Express.js",
+      "Prisma ORM",
+      "mySQL",
+    ],
+    icon: <Luggage className="h-full w-full stroke-1" />,
+    callToActionDisabled: true,
+    callToActionText: "Discontinued",
+    id: "tripflow",
   },
   {
     icon: <PiTelegramLogo className="h-full w-full" />,
@@ -91,6 +103,7 @@ export const cards: Card[] = [
     href: "https://t.me/mahjongcounterbot",
     githubRef: "https://github.com/mcmc101001/mahjongcounter",
     tech: ["python-telegram-bot", "AWS EC2"],
+    id: "mahjong",
   },
   {
     icon: <CircleDollarSign className="h-full w-full stroke-1" />,
@@ -102,5 +115,6 @@ export const cards: Card[] = [
     tech: ["Django", "python-telegram-bot", "PostgreSQL", "Bootstrap"],
     callToActionDisabled: true,
     callToActionText: "Currently not deployed",
+    id: "expense-tracker",
   },
 ];
