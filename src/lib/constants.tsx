@@ -27,7 +27,7 @@ export const cards: Card[] = [
   {
     title: "AI Icon Generator",
     description:
-      "AI Icon Generator is a SaaS that utilises DALL-E to generate icons with a high degree of user customisation. It is built with Next.js and deployed fully on AWS using SST.",
+      "AI Icon Generator is a SaaS that utilises DALL-E to generate icons with a high degree of user customisation. It is built with Next.js and deployed fully on AWS using SST. Currently there are over 2000 users.",
     href: "https://aiicongen.com/",
     tech: [
       "Next.js",
