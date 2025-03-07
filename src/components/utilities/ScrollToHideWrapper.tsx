@@ -9,7 +9,9 @@ export default function ScrollToHideWrapper({
 }) {
   const [isHidden, setIsHidden] = useState(false);
 
-  const { scrollY } = useScroll();
+  const { scrollY } = useScroll({
+    layoutEffect: false,
+  });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious();

@@ -20,7 +20,7 @@ export default function ScrollPrompter() {
       style={{ opacity: scrollPrompterTransparency }}
     >
       <ChevronsDown
-        className={`absolute bottom-2 left-0 right-0 mx-auto h-14 w-14 md:h-20 md:w-20 animate-bounce text-foreground`}
+        className={`absolute bottom-2 left-0 right-0 mx-auto h-14 w-14 animate-bounce text-foreground md:h-20 md:w-20`}
       />
     </motion.div>
   );

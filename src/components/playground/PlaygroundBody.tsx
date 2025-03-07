@@ -1,16 +1,11 @@
-import { useMotionValue } from "framer-motion";
-import { type MouseEvent, type TouchEvent } from "react";
 import DraggableWrapper from "@/components/playground/DraggableWrapper";
-import { getTransform, setTransform } from "@/lib/utils";
 import ScrollPrompter from "@/components/utilities/ScrollPrompter";
-import {
-  $playgroundIsDraggingElement,
-  $playgroundSelectedObjects,
-} from "../../store/playgroundStore";
-import { useStore } from "@nanostores/react";
+import { clearSelectedObjects } from "../../store/playgroundStore";
 import Skillset from "../landing/Skillset";
 import useIsMobile from "@/hooks/useIsMobile";
 import Timeline from "../landing/Timeline";
+import useCopyPaste from "@/hooks/useCopyPaste";
+import useDragMotion from "@/hooks/useDragMotion";
 
 export default function PlaygroundBody({
   children,
@@ -19,80 +14,13 @@ export default function PlaygroundBody({
 }) {
   const isMobile = useIsMobile();
 
-  const selectedObjects = useStore($playgroundSelectedObjects);
-  const isDraggingElement = useStore($playgroundIsDraggingElement);
-
-  let mouseX = useMotionValue(0);
-  let mouseY = useMotionValue(0);
-
-  let prevMouseX = useMotionValue(0);
-  let prevMouseY = useMotionValue(0);
-
-  let touchX = useMotionValue(0);
-  let touchY = useMotionValue(0);
-
-  let prevTouchX = useMotionValue(0);
-  let prevTouchY = useMotionValue(0);
-
-  function moveObjects({ deltaX, deltaY }: { deltaX: number; deltaY: number }) {
-    for (const id of selectedObjects) {
-      const element = document.querySelector(
-        `[drag-id="${id}"]`,
-      ) as HTMLElement;
-
-      if (element) {
-        const { x, y } = getTransform(element);
-
-        setTransform(element, {
-          x: x + deltaX,
-          y: y + deltaY,
-        });
-      }
-    }
-  }
-
-  function handleMouseMove({ clientX, clientY }: MouseEvent) {
-    prevMouseX.set(mouseX.get());
-    prevMouseY.set(mouseY.get());
-
-    mouseX.set(clientX);
-    mouseY.set(clientY);
-
-    if (isDraggingElement) {
-      moveObjects({
-        deltaX: mouseX.get() - prevMouseX.get(),
-        deltaY: mouseY.get() - prevMouseY.get(),
-      });
-    }
-  }
-
-  function handleTouchMove(e: TouchEvent) {
-    prevTouchX.set(touchX.get());
-    prevTouchY.set(touchY.get());
-
-    touchX.set(e.touches[0].clientX);
-    touchY.set(e.touches[0].clientY);
-    if (isDraggingElement) {
-      moveObjects({
-        deltaX: touchX.get() - prevTouchX.get(),
-        deltaY: touchY.get() - prevTouchY.get(),
-      });
-    }
-  }
-
-  function handleTouchStartBg(e: TouchEvent<HTMLElement>) {
-    touchX.set(e.touches[0].clientX);
-    touchY.set(e.touches[0].clientY);
-    prevTouchX.set(e.touches[0].clientX);
-    prevTouchY.set(e.touches[0].clientY);
-  }
-
-  function handleTouchEndBg() {
-    touchX.set(0);
-    touchY.set(0);
-    prevTouchX.set(0);
-    prevTouchY.set(0);
-  }
+  const renderedCopiedElements = useCopyPaste();
+  const {
+    handleMouseMove,
+    handleTouchMove,
+    handleTouchStartBg,
+    handleTouchEndBg,
+  } = useDragMotion();
 
   return (
     <div
@@ -104,9 +32,12 @@ export default function PlaygroundBody({
     >
       <div
         className="absolute inset-0 z-10 h-full w-full"
-        onClick={() => $playgroundSelectedObjects.set([])}
+        onClick={() => {
+          clearSelectedObjects();
+        }}
       ></div>
       <section className="container flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">
+        {renderedCopiedElements}
         <DraggableWrapper dragId="greeting">
           <h1 className="text-3xl font-bold md:text-6xl">
             Hi, I am Ming Chun !
@@ -120,7 +51,8 @@ export default function PlaygroundBody({
         </DraggableWrapper>
         <DraggableWrapper dragId="prompt">
           <p className="text-xl font-light italic text-accent">
-            Psst...Try dragging us!
+            Psst...Try dragging us! Shift click for multiselect, Ctrl+C and
+            Ctrl+V, etc!
           </p>
         </DraggableWrapper>
         <ScrollPrompter />

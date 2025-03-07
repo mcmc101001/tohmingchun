@@ -2,10 +2,11 @@ import { cn } from "@/lib/utils";
 import {
   $playgroundIsDraggingElement,
   $playgroundSelectedObjects,
+  registerDraggableElement,
 } from "../../store/playgroundStore";
 import { useStore } from "@nanostores/react";
 import type { MouseEvent, TouchEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface DraggableWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   isDraggable?: boolean;
@@ -21,6 +22,10 @@ export default function DraggableWrapper({
 }: DraggableWrapperProps) {
   const selectedObjects = useStore($playgroundSelectedObjects);
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    registerDraggableElement(dragId, children);
+  }, []);
 
   function handleContact(e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) {
     const id = e.currentTarget.getAttribute("drag-id");
@@ -63,8 +68,8 @@ export default function DraggableWrapper({
       {...props}
       drag-id={dragId}
       className={cn(
-        className,
         "relative z-20 cursor-move touch-none select-none",
+        className,
       )}
     >
       {children}
