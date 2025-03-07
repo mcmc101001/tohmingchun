@@ -5,13 +5,10 @@ import { useRef, useState } from "react";
 export default function ScrollPrompter() {
   const [scrollPrompterTransparency, setScrollPrompterTransparency] =
     useState(0.6);
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    container: targetRef,
-  });
+  const { scrollYProgress } = useScroll();
 
   useMotionValueEvent(scrollYProgress, "change", () => {
-    setScrollPrompterTransparency(Math.max(0.6 - 5 * scrollYProgress.get(), 0));
+    setScrollPrompterTransparency(Math.max(0.6 - 7 * scrollYProgress.get(), 0));
   });
 
   return (

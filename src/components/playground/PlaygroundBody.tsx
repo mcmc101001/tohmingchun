@@ -37,7 +37,6 @@ export default function PlaygroundBody({
         }}
       ></div>
       <section className="container flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">
-        {renderedCopiedElements}
         <DraggableWrapper dragId="greeting">
           <h1 className="text-3xl font-bold md:text-6xl">
             Hi, I am Ming Chun !
@@ -58,6 +57,7 @@ export default function PlaygroundBody({
         <ScrollPrompter />
       </section>
       <section className="container flex min-h-screen flex-col justify-center gap-4 text-foreground md:gap-8 md:px-16">
+        {renderedCopiedElements}
         <DraggableWrapper dragId="about me" isDraggable={!isMobile}>
           <div className="flex items-center">
             <h1 className="text-left text-2xl font-bold md:text-5xl">

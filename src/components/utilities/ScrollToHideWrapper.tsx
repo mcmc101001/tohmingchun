@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -9,9 +9,7 @@ export default function ScrollToHideWrapper({
 }) {
   const [isHidden, setIsHidden] = useState(false);
 
-  const { scrollY } = useScroll({
-    layoutEffect: false,
-  });
+  const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious();
