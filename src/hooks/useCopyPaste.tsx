@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function useCopyPaste() {
   const [renderedCopiedElements, setRenderedCopiedElements] = useState<
-    [string, ReactNode][]
+    ReactNode[]
   >([]);
 
   const selectedObjects = useStore($playgroundSelectedObjects);
@@ -30,13 +30,12 @@ export default function useCopyPaste() {
       } else if (e.ctrlKey && code === "KeyV") {
         console.log("pasting", copiedItems);
         const newDragIds: string[] = [];
-        const newElements: [string, ReactNode][] = [];
+        const newElements: ReactNode[] = [];
         copiedItems.forEach((dragId) => {
           const element = document.querySelector(
             `[drag-id="${dragId}"]`,
           ) as HTMLElement;
 
-          const { x, y } = getTransform(element);
           const dimensions = element.getBoundingClientRect();
 
           const newDragId = `${dragId.split("-")[0]}-copy-${uuidv4()}`;
@@ -59,7 +58,7 @@ export default function useCopyPaste() {
           );
 
           newDragIds.push(newDragId);
-          newElements.push([dragId, copiedElement]);
+          newElements.push(copiedElement);
         });
         addSelectedObjects(newDragIds);
         setRenderedCopiedElements((prev) => [...prev, ...newElements]);
