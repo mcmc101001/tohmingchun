@@ -40,8 +40,9 @@ export default function PlaygroundBody({
       {renderedCopiedElements.map(([dragId, element]) =>
         createPortal(
           element,
-          document.querySelector(`[drag-id="${dragId}"]`)
-            ?.parentElement as HTMLElement,
+          document.body,
+          // document.querySelector(`[drag-id="${dragId}"]`)
+          //   ?.parentElement as HTMLElement,
         ),
       )}
       <section className="container relative flex min-h-screen flex-col items-center justify-center gap-3 py-10 text-foreground md:gap-12">

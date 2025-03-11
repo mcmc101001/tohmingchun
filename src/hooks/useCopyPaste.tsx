@@ -47,9 +47,11 @@ export default function useCopyPaste() {
               dragId={newDragId}
               className="absolute"
               style={{
+                top: dimensions.top + window.scrollY,
+                left: dimensions.left,
                 height: `${dimensions.height}px`,
                 width: `${dimensions.width}px`,
-                transform: `translate3d(${x + 40}px, ${y + 30}px, 0)`,
+                transform: `translate3d(50px, 50px, 0)`,
               }}
             >
               {objectRegistry[dragId]}
