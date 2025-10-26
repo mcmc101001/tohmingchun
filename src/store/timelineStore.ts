@@ -5,7 +5,7 @@ export type TimelineObjectType = {
   title: string;
   description: string[];
   startDate: Date;
-  endDate: Date;
+  endDate?: Date;
 };
 
 interface TimelineStore {
@@ -14,6 +14,17 @@ interface TimelineStore {
 }
 
 const initialTimeline: TimelineObjectType[] = [
+  {
+    id: 0,
+    title: "Software Engineering Intern at Govtech",
+    description: [
+      "Worked as a full-stack developer on the development of a project to rebuild Singapore's trade declaration system",
+      "Developed and enhanced the UI component library, working in cross functional teams to deliver components that meet both design and engineering requirements",
+      "Developed full-stack features using React, Typescript, GraphQL, Kotlin and Spring Boot",
+    ],
+    startDate: new Date("2025-05-01"),
+    endDate: undefined,
+  },
   {
     id: 1,
     title:

@@ -39,7 +39,8 @@ export function setTransform(el: HTMLElement, transform: Transform) {
   );
 }
 
-export function formatDateMonthYear(date: Date) {
+export function formatDateMonthYear(date: Date | undefined) {
+  if (!date) return "Present";
   return date.toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",

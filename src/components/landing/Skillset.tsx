@@ -6,7 +6,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 import { useState } from "react";
-import { PiTelegramLogo } from "react-icons/pi";
 import { TbBrandFramerMotion, TbBrandCypress } from "react-icons/tb";
 import {
   SiPrisma,
@@ -16,10 +15,13 @@ import {
   SiGithubactions,
   SiZod,
   SiDocker,
+  SiSpring,
   SiSupabase,
   SiStripe,
   SiSwagger,
   SiSst,
+  SiKotlin,
+  SiStorybook,
 } from "react-icons/si";
 import DraggableWrapper from "../playground/DraggableWrapper";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -65,6 +67,7 @@ const LANGUAGES = [
   { name: "C", icon: <i className="devicon-c-plain" /> },
   { name: "C++", icon: <i className="devicon-cplusplus-plain" /> },
   { name: "Java", icon: <i className="devicon-java-plain" /> },
+  { name: "Kotlin", icon: <SiKotlin className="h-16 w-16" /> },
   { name: "HTML", icon: <i className="devicon-html5-plain" /> },
   { name: "CSS", icon: <i className="devicon-css3-plain" /> },
   { name: "Verilog", icon: <Cpu className="h-16 w-16" /> },
@@ -83,10 +86,7 @@ const LIBRARIES = [
   },
   { name: "FastAPI", icon: <i className="devicon-fastapi-plain" /> },
   { name: "Django", icon: <i className="devicon-django-plain" /> },
-  {
-    name: "python-telegram-bot",
-    icon: <PiTelegramLogo className="h-16 w-16" />,
-  },
+  { name: "Spring Boot", icon: <SiSpring className="h-16 w-16" /> },
   { name: "TailwindCSS", icon: <i className="devicon-tailwindcss-plain" /> },
   { name: "Material UI", icon: <i className="devicon-materialui-plain" /> },
   {
@@ -109,6 +109,7 @@ const TOOLS = [
   { name: "AWS S3 + Cloudfront", icon: <SiAmazons3 className="h-16 w-16" /> },
   { name: "Git", icon: <i className="devicon-git-plain" /> },
   { name: "GitHub Actions", icon: <SiGithubactions className="h-16 w-16" /> },
+  { name: "Storybook", icon: <SiStorybook className="h-16 w-16" /> },
   { name: "Supabase", icon: <SiSupabase className="h-16 w-16" /> },
   { name: "Stripe", icon: <SiStripe className="h-16 w-16" /> },
   { name: "LaTeX", icon: <i className="devicon-latex-plain" /> },
